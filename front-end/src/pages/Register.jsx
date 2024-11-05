@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -36,7 +35,6 @@ const Register = () => {
       ...prev,
       [e.target.name]: e.target.value
     }));
-    // Clear error when user starts typing
     if (error) setError('');
   };
 
@@ -50,7 +48,7 @@ const Register = () => {
 
     try {
       await register(formData.email, formData.password, formData.name);
-      navigate('/'); // Redirect to home page after successful registration
+      navigate('/');
     } catch (err) {
       setError(err.message || 'Failed to create an account');
     } finally {

@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { Link } from 'react-router-dom';
 import { ShoppingCart, User, LogOut, LogIn, UserPlus } from 'lucide-react';
 import { useCart } from '../context/CartContext.jsx';
@@ -13,7 +12,6 @@ const Navbar = () => {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {

@@ -96,18 +96,16 @@ function CartProvider({ children }) {
     }
 
     try {
-      // If quantity is less than 1, remove the item
+     
       if (newQuantity < 1) {
         return removeFromCart(productId);
       }
 
-      // Find the item in the cart
       const cartItem = cart.find(item => Number(item.productId) === Number(productId));
       if (!cartItem) {
         throw new Error('Product not found in cart');
       }
 
-      // Optimistically update the cart
       const updatedCart = cart.map(item =>
         Number(item.productId) === Number(productId)
           ? { ...item, quantity: newQuantity }
@@ -125,7 +123,6 @@ function CartProvider({ children }) {
       });
 
       if (!response.ok) {
-        // Revert the optimistic update if the request fails
         setCart(cart);
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to update quantity');
@@ -137,7 +134,6 @@ function CartProvider({ children }) {
     } catch (err) {
       console.error('Error updating quantity:', err);
       setError(err.message);
-      // Revert the optimistic update
       await fetchCart();
     }
   };

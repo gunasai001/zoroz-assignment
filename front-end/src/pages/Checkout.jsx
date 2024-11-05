@@ -19,16 +19,13 @@ const Checkout = () => {
     e.preventDefault();
   
     try {
-      // First validate the form data
       if (!formData.name || !formData.email || !formData.address || 
           !formData.cardNumber || !formData.expiryDate || !formData.cvv) {
         throw new Error('Please fill in all required fields');
       }
   
-      // Simulate payment processing delay
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Create the order
       const response = await fetch('http://localhost:5000/api/orders', {
         method: 'POST',
         headers: {
@@ -57,10 +54,8 @@ const Checkout = () => {
   
       const orderData = await response.json();
       
-      // Order was successful, clear the cart
       await clearCart();
       
-      // Navigate to success page with order details
       navigate('/payment-status', { 
         state: { 
           success: true,

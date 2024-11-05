@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -27,7 +26,7 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
-      navigate('/'); // Redirect to home page after successful login
+      navigate('/'); 
     } catch (err) {
       setError('Failed to login. Please check your credentials.', err.message);
     } finally {

@@ -8,7 +8,7 @@ const Order = require('./models/Order');
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
@@ -21,17 +21,17 @@ app.use(session({
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/ecommerce',
-    ttl: 24 * 60 * 60 // 1 day
+    ttl: 24 * 60 * 60 
   }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 24 * 60 * 60 * 1000 // 1 day
+    maxAge: 24 * 60 * 60 * 1000 
   }
 }));
 
-// Auth middleware
+
 const requireAuth = async (req, res, next) => {
   try {
     if (!req.session.userId) {
@@ -50,7 +50,7 @@ const requireAuth = async (req, res, next) => {
 
 app.get('/api/auth/status', async (req, res) => {
   try {
-    // Check if there's a session and userId exists
+   
     if (!req.session.userId) {
       return res.status(401).json({ 
         authenticated: false,
@@ -58,12 +58,12 @@ app.get('/api/auth/status', async (req, res) => {
       });
     }
 
-    // Find the user by session userId
+    
     const user = await User.findById(req.session.userId)
-      .select('-password -cart'); // Exclude sensitive fields
+      .select('-password -cart'); 
 
     if (!user) {
-      // Clear invalid session if user doesn't exist
+     
       req.session.destroy();
       return res.status(401).json({ 
         authenticated: false,
@@ -71,14 +71,14 @@ app.get('/api/auth/status', async (req, res) => {
       });
     }
 
-    // Return user data if session is valid
+    
     res.json({
       authenticated: true,
       user: {
         id: user._id,
         name: user.name,
         email: user.email
-        // Add any other user fields you want to return
+        
       }
     });
 
@@ -92,7 +92,7 @@ app.get('/api/auth/status', async (req, res) => {
 });
 
 
-// Auth routes
+
 app.post('/api/auth/register', async (req, res) => {
   try {
     const { email, password, name } = req.body;
@@ -137,7 +137,7 @@ app.post('/api/auth/logout', (req, res) => {
   });
 });
 
-// Cart routes
+
 app.get('/api/cart', requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.session.userId).select('cart');
@@ -217,10 +217,8 @@ app.put('/api/cart/:productId/:quantity', requireAuth, async (req, res) => {
     }
 
     if (quantity === 0) {
-      // Remove item if quantity is 0
       user.cart.splice(itemIndex, 1);
     } else {
-      // Update quantity
       user.cart[itemIndex].quantity = quantity;
     }
 
@@ -236,12 +234,10 @@ app.post('/api/orders', requireAuth, async (req, res) => {
   try {
     const { items, shippingDetails, totalAmount, paymentDetails } = req.body;
 
-    // Validate request data
     if (!items || !items.length || !shippingDetails || !totalAmount) {
       return res.status(400).json({ message: 'Missing required order information' });
     }
 
-    // Create new order
     const order = new Order({
       userId: req.user._id,
       items,
@@ -251,15 +247,12 @@ app.post('/api/orders', requireAuth, async (req, res) => {
       status: 'processing'
     });
 
-    // Save the order
     await order.save();
 
-    // Clear the user's cart after successful order
     const user = await User.findById(req.user._id);
     user.cart = [];
     await user.save();
 
-    // Send response
     res.status(201).json({
       message: 'Order placed successfully',
       orderId: order._id,
@@ -277,7 +270,6 @@ app.post('/api/orders', requireAuth, async (req, res) => {
   }
 });
 
-// Get user's orders
 app.get('/api/orders', requireAuth, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.user._id })
@@ -290,7 +282,6 @@ app.get('/api/orders', requireAuth, async (req, res) => {
   }
 });
 
-// Get specific order details
 app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
   try {
     const order = await Order.findOne({ 
@@ -310,7 +301,6 @@ app.get('/api/orders/:orderId', requireAuth, async (req, res) => {
 });
 
 
-// Start server
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/ecommerce')
   .then(() => {
