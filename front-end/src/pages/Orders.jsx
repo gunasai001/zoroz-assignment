@@ -57,7 +57,7 @@ const Orders = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-gray-600"></div>
       </div>
     );
   }
@@ -67,7 +67,7 @@ const Orders = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
           <p className="text-yellow-600">Please log in to view your orders.</p>
-          <Link to="/login" className="text-blue-600 hover:text-blue-800 mt-2 inline-block">
+          <Link to="/login" className="text-gray-600 hover:text-gray-800 mt-2 inline-block">
             Go to Login
           </Link>
         </div>
@@ -96,7 +96,7 @@ const Orders = () => {
           <p className="text-gray-600">You have not placed any orders yet.</p>
           <Link 
             to="/products" 
-            className="text-blue-600 hover:text-blue-800 mt-2 inline-block"
+            className="text-gray-600 hover:text-gray-800 mt-2 inline-block"
           >
             Browse Products
           </Link>

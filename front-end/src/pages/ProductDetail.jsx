@@ -38,7 +38,7 @@ const ProductDetail = () => {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-600"></div>
         </div>
       </div>
     );
@@ -66,7 +66,7 @@ const ProductDetail = () => {
           <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
           <p className="text-gray-600 mb-6">{product.description}</p>
           <div className="flex items-center mb-6">
-            <span className="text-2xl font-bold text-blue-600">
+            <span className="text-2xl font-bold text-gray-800">
               ${product.price.toFixed(2)}
             </span>
             <span className="ml-4 px-3 py-1 bg-gray-200 rounded-full text-sm capitalize">
@@ -75,7 +75,7 @@ const ProductDetail = () => {
           </div>
           <button
             onClick={handleAddToCart}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition mt-auto"
+            className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-950 transition mt-auto"
           >
             Add to Cart
           </button>

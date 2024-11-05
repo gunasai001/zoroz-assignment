@@ -159,7 +159,7 @@ const Checkout = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                   placeholder="John Doe"
                 />
               </div>
@@ -171,7 +171,7 @@ const Checkout = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                   placeholder="john@example.com"
                 />
               </div>
@@ -182,7 +182,7 @@ const Checkout = () => {
                   value={formData.address}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                   rows="3"
                   placeholder="Enter your shipping address"
                 />
@@ -195,7 +195,7 @@ const Checkout = () => {
                   value={formData.cardNumber}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                   placeholder="1234 5678 9012 3456"
                 />
               </div>
@@ -209,7 +209,7 @@ const Checkout = () => {
                     onChange={handleChange}
                     placeholder="MM/YY"
                     required
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -220,14 +220,14 @@ const Checkout = () => {
                     value={formData.cvv}
                     onChange={handleChange}
                     required
-                    className="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-2 border rounded focus:ring-2 focus:ring-gray-800 focus:border-transparent"
                     placeholder="123"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition mt-4"
+                className="w-full bg-gray-800 text-white py-3 rounded-lg hover:bg-gray-950 transition mt-4"
               >
                 Place Order (${getCartTotal().toFixed(2)})
               </button>

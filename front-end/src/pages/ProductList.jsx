@@ -34,7 +34,7 @@ const ProductList = () => {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-600"></div>
         </div>
       </div>
     );
@@ -69,7 +69,7 @@ const ProductList = () => {
             {user && (
               <button 
                 onClick={() => addToCart(product)}
-                className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+                className="mt-4 w-full bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-950 transition"
               >
                 Add to Cart
               </button>
